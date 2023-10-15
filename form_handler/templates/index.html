@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" method="post">
+    {{ form.as_p }}
+{#    <label>#}
+{#        First Name: <br/>#}
+{#        <input type="text" required="required" name="first_name">#}
+{#    </label>#}
+{#    <br>#}
+{#    <label>#}
+{#        Last Name: <br/>#}
+{#        <input type="text" required="required" name="last_name">#}
+{#    </label>#}
+{#    <br>#}
+{#    <label>#}
+{#        Birth: <br/>#}
+{#        <input type="date" name="birth">#}
+{#    </label>#}
+{#    <br>#}
+{#    <label>#}
+{#        Phone: <br/>#}
+{#        <input type="tel" placeholder="(0XX) XXX-XX-XX" pattern="\(0\\d{2}\) \\d{3}-\\d{2}-\\d{2}" name="phone">#}
+{#    </label>#}
+{#    <br>#}
+    {% csrf_token %}
+    <button type="submit">Send</button>
+</form>
+<table border="1">
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>FirstName</td>
+        <td>LastName</td>
+        <td>Birth</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for student in students %}
+        <tr>
+            <td>{{ student.pk }}</td>
+            <td>{{ student.first_name }}</td>
+            <td>{{ student.last_name }}</td>
+            <td>{{ student.birth|date:'m-d-Y' }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+</body>
+</html>
